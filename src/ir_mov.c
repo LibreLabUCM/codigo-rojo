@@ -4,9 +4,9 @@
 
 void ir_mov(struct instruction ir, addr_t pc, struct core *core, struct queue *queue) {
     addr_t aptr = instruction_eval(ir.a, pc, core);
-    struct instruction air = *core_get(core, aptr);
+    struct instruction air = *core_get(core, pc + aptr);
     addr_t bptr = instruction_eval(ir.b, pc, core);
-    struct instruction bir = *core_get(core, bptr);
+    struct instruction bir = *core_get(core, pc + bptr);
     switch (ir.modifier) {
     case A:
         core_get(core, pc + bptr)->a.number = air.a.number;
