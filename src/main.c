@@ -10,11 +10,11 @@
 
 
 void print_core(struct core *core) {
-  for (int j = 0; j < core->m; j++) {
-      struct instruction ir = *core_get(core, j);
-      printf("%d %d %d %d %d %d\n",
-             ir.opcode, ir.modifier, ir.a.mode, ir.a.number, ir.b.mode, ir.b.number);
-  }
+    for (int j = 0; j < core->m; j++) {
+        struct instruction ir = *core_get(core, j);
+        printf("%d %d %d %d %d %d\n",
+               ir.opcode, ir.modifier, ir.a.mode, ir.a.number, ir.b.mode, ir.b.number);
+    }
 }
 
 int main() {
@@ -32,15 +32,15 @@ int main() {
 
     struct queue *playerQueues[PLAYERS];
     for(int i = 0; i < PLAYERS; i++) {
-      core->core[CORESIZE/PLAYERS*i] = (struct instruction) {
-          .opcode = MOV,
-          .modifier = I,
-          .a = { .mode = DIRECT, .number = 0 },
-          .b = { .mode = DIRECT, .number = 1 }
-      };
-      playerQueues[i] = malloc(sizeof(struct queue));
-      queue_init(playerQueues[i]);
-      queue_push_back(playerQueues[i], CORESIZE/PLAYERS*i);
+        core->core[CORESIZE/PLAYERS*i] = (struct instruction) {
+            .opcode = MOV,
+            .modifier = I,
+            .a = { .mode = DIRECT, .number = 0 },
+            .b = { .mode = DIRECT, .number = 1 }
+        };
+        playerQueues[i] = malloc(sizeof(struct queue));
+        queue_init(playerQueues[i]);
+        queue_push_back(playerQueues[i], CORESIZE/PLAYERS*i);
     }
 
     print_core(core);
@@ -52,7 +52,7 @@ int main() {
     }
 
     for(int i = 0; i < PLAYERS; i++) {
-      queue_del(playerQueues[i]);
+        queue_del(playerQueues[i]);
     }
     core_del(core);
 }
