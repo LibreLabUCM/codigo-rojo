@@ -6,6 +6,7 @@
 #include "ir_arith_div.h"
 #include "ir_jmp.h"
 #include "ir_cmp.h"
+#include "ir_spl.h"
 
 addr_t eval_operand(struct operand op, addr_t pc, struct core *core) {
     addr_t res;
