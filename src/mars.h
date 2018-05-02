@@ -15,9 +15,9 @@ enum opcode {
     //JMZ,
     //JMN,
     //DJN,
-    CMP
+    CMP,
     //SLT,
-    //SPL
+    SPL
 };
 
 enum modifier {

@@ -19,5 +19,6 @@ void cycle(struct queue *queue, struct core *core) {
     case MOD: ir_mod(ir, pc, core, queue); break;
     case JMP: ir_jmp(ir, pc, core, queue); break;
     case CMP: ir_cmp(ir, pc, core, queue); break;
+    case SPL: ir_spl(ir, pc, core, queue); break;
     }
 }
