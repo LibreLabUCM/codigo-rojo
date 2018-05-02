@@ -29,7 +29,7 @@ addr_t eval_operand(struct operand op, addr_t pc, struct core *core) {
     return res;
 }
 
-void cycle(struct queue *queue, struct core *core) {
+void cycle_warrior(struct queue *queue, struct core *core) {
     addr_t pc = queue_pop_front(queue);
     struct instruction ir = *core_get(core, pc);
     switch (ir.opcode) {
@@ -43,5 +43,11 @@ void cycle(struct queue *queue, struct core *core) {
     case JMP: ir_jmp(ir, pc, core, queue); break;
     case CMP: ir_cmp(ir, pc, core, queue); break;
     case SPL: ir_spl(ir, pc, core, queue); break;
+    }
+}
+
+void cycle(struct warrior_list *wlist, struct core *core) {
+    for (int i = 0; i < wlist->n; i++) {
+        cycle_warrior(&wlist->l[i], core);
     }
 }

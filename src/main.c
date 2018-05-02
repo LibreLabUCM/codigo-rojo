@@ -5,9 +5,8 @@
 #include "mars.h"
 
 #define CYCLES 3
-#define PLAYERS 2
-#define CORESIZE 7*PLAYERS // 14
-
+#define WARRIORS 2
+#define CORESIZE 7*WARRIORS // 14
 
 void print_core(struct core *core) {
     for (int j = 0; j < core->m; j++) {
@@ -30,29 +29,26 @@ int main() {
         };
     }
 
-    struct queue *playerQueues[PLAYERS];
-    for(int i = 0; i < PLAYERS; i++) {
-        core->core[CORESIZE/PLAYERS*i] = (struct instruction) {
+    struct warrior_list *wlist = malloc(sizeof(*wlist));
+    warrior_list_init(wlist, WARRIORS);
+    for(int i = 0; i < wlist->n; i++) {
+        core->core[CORESIZE/WARRIORS*i] = (struct instruction) {
             .opcode = MOV,
             .modifier = I,
             .a = { .mode = DIRECT, .number = 0 },
             .b = { .mode = DIRECT, .number = 1 }
         };
-        playerQueues[i] = malloc(sizeof(struct queue));
-        queue_init(playerQueues[i]);
-        queue_push_back(playerQueues[i], CORESIZE/PLAYERS*i);
+        queue_push_back(&wlist->l[i], CORESIZE/WARRIORS*i);
     }
 
     print_core(core);
     printf("\n");
-    for (int i = 0; i < CYCLES*PLAYERS; i++) {
-        cycle(playerQueues[i%PLAYERS], core);
+    for (int i = 0; i < CYCLES; i++) {
+        cycle(wlist, core);
         print_core(core);
         printf("\n");
     }
 
-    for(int i = 0; i < PLAYERS; i++) {
-        queue_del(playerQueues[i]);
-    }
+    warrior_list_del(wlist);
     core_del(core);
 }
