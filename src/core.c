@@ -1,7 +1,7 @@
 #include <stdlib.h>
 
 #include "core.h"
-#include "mars.h"
+#include "instruction.h"
 
 void core_init(struct core *c, size_t m) {
     c->core = malloc(sizeof(*c->core)*m);

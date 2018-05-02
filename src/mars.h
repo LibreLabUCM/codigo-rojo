@@ -1,53 +1,11 @@
 #ifndef MARS_H
 #define MARS_H
 
-typedef unsigned int addr_t;
+#include "instruction.h"
+#include "queue.h"
+#include "core.h"
 
-enum opcode {
-    DAT,
-    MOV,
-    ADD,
-    SUB,
-    MUL,
-    DIV,
-    MOD,
-    JMP,
-    //JMZ,
-    //JMN,
-    //DJN,
-    CMP
-    //SLT,
-    //SPL
-};
-
-enum modifier {
-    A,
-    B,
-    AB,
-    BA,
-    F,
-    X,
-    I
-};
-
-enum mode {
-    IMMEDIATE,
-    DIRECT,
-    INDIRECT,
-    DECREMENT,
-    INCREMENT
-};
-
-struct operand {
-    enum mode mode;
-    addr_t number;
-};
-
-struct instruction {
-    enum opcode opcode;
-    enum modifier modifier;
-    struct operand a;
-    struct operand b;
-};
+void cycle(struct queue *queue, struct core *core);
+addr_t eval_operand(struct operand op, addr_t pc, struct core *core);
 
 #endif

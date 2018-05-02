@@ -1,11 +1,12 @@
 #include "mars.h"
 #include "core.h"
 #include "instruction.h"
+#include "queue.h"
 
 void ir_mov(struct instruction ir, addr_t pc, struct core *core, struct queue *queue) {
-    addr_t aptr = instruction_eval(ir.a, pc, core);
+    addr_t aptr = eval_operand(ir.a, pc, core);
     struct instruction air = *core_get(core, aptr);
-    addr_t bptr = instruction_eval(ir.b, pc, core);
+    addr_t bptr = eval_operand(ir.b, pc, core);
     struct instruction bir = *core_get(core, bptr);
     switch (ir.modifier) {
     case A:

@@ -1,3 +1,4 @@
+#include "instruction.h"
 #include "queue.h"
 #include "core.h"
 #include "ir_mov.h"
@@ -5,6 +6,27 @@
 #include "ir_arith_div.h"
 #include "ir_jmp.h"
 #include "ir_cmp.h"
+
+addr_t eval_operand(struct operand op, addr_t pc, struct core *core) {
+    addr_t res;
+    switch (op.mode) {
+    case IMMEDIATE:
+        res = 0;
+        break;
+    case DIRECT:
+        res = op.number;
+        break;
+    case INDIRECT:
+        res = op.number + core_get(core, pc + op.number)->b.number;
+        break;
+    case DECREMENT:
+        res = op.number + core_get(core, pc + op.number)->b.number + core->m - 1;
+        break;
+    case INCREMENT:
+        break;
+    }
+    return res;
+}
 
 void cycle(struct queue *queue, struct core *core) {
     addr_t pc = queue_pop_front(queue);

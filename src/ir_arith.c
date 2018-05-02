@@ -4,9 +4,9 @@
 #include "queue.h"
 
 #define ARITH(op)                                     \
-    addr_t aptr = instruction_eval(ir.a, pc, core);   \
+    addr_t aptr = eval_operand(ir.a, pc, core);       \
     struct instruction air = *core_get(core, aptr);   \
-    addr_t bptr = instruction_eval(ir.b, pc, core);   \
+    addr_t bptr = eval_operand(ir.b, pc, core);       \
     struct instruction bir = *core_get(core, bptr);   \
     switch (ir.modifier) {                            \
     case A:                                           \

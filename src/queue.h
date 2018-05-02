@@ -3,7 +3,7 @@
 
 #include <stdlib.h>
 
-#include "mars.h"
+#include "instruction.h"
 
 struct queue {
     struct queue_node *front;
