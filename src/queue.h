@@ -18,6 +18,7 @@ struct queue_node {
 
 void queue_init(struct queue *q);
 void queue_del(struct queue *q);
+void queue_free(struct queue *q);
 void queue_push_back(struct queue *q, int addr);
 addr_t queue_pop_front(struct queue *q);
 

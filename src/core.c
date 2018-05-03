@@ -13,6 +13,11 @@ void core_del(struct core *c) {
     c->m = 0;
 }
 
+void core_free(struct core *c) {
+    core_del(c);
+    free(c);
+}
+
 struct instruction *core_get(struct core *c, addr_t addr) {
     return &c->core[addr % c->m];
 }

@@ -13,6 +13,7 @@ struct warrior_list {
 
 void warrior_list_init(struct warrior_list *l, size_t n);
 void warrior_list_del(struct warrior_list *l);
+void warrior_list_free(struct warrior_list *l);
 struct queue *next_warrior(struct warrior_list *l);
 
 #endif

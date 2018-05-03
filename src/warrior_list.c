@@ -17,6 +17,11 @@ void warrior_list_del(struct warrior_list *l) {
     l->nwrs = 0;
 }
 
+void warrior_list_free(struct warrior_list *l) {
+    warrior_list_del(l);
+    free(l);
+}
+
 struct queue *next_warrior(struct warrior_list *l) {
     struct queue *next = &l->l[l->w];
     l->w = (l->w + 1) % l->nwrs;

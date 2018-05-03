@@ -7,15 +7,20 @@ void queue_init(struct queue *q) {
     q->len = 0;
 }
 
-static void queue_del_nodes(struct queue_node *n) {
+static void queue_free_nodes(struct queue_node *n) {
     if (n != NULL) {
-        queue_del_nodes(n->prev);
+        queue_free_nodes(n->prev);
         free(n);
     }
 }
 
 void queue_del(struct queue *q) {
-    queue_del_nodes(q->front);
+    queue_free_nodes(q->front);
+}
+
+void queue_free(struct queue *q) {
+    queue_del(q);
+    free(q);
 }
 
 void queue_push_back(struct queue *q, int addr) {
