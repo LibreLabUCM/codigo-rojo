@@ -31,7 +31,7 @@ int main() {
 
     struct warrior_list *wlist = malloc(sizeof(*wlist));
     warrior_list_init(wlist, WARRIORS);
-    for(int i = 0; i < wlist->n; i++) {
+    for(int i = 0; i < wlist->nwrs; i++) {
         core->core[CORESIZE/WARRIORS*i] = (struct instruction) {
             .opcode = MOV,
             .modifier = I,
@@ -43,7 +43,7 @@ int main() {
 
     print_core(core);
     printf("\n");
-    for (int i = 0; i < CYCLES; i++) {
+    for (int i = 0; i < CYCLES*WARRIORS; i++) {
         cycle(wlist, core);
         print_core(core);
         printf("\n");

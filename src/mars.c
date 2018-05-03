@@ -47,7 +47,5 @@ void cycle_warrior(struct queue *queue, struct core *core) {
 }
 
 void cycle(struct warrior_list *wlist, struct core *core) {
-    for (int i = 0; i < wlist->n; i++) {
-        cycle_warrior(&wlist->l[i], core);
-    }
+    cycle_warrior(next_warrior(wlist), core);
 }
