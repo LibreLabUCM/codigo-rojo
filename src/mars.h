@@ -6,8 +6,16 @@
 #include "core.h"
 #include "warrior_list.h"
 
-void cycle_warrior(struct queue *queue, struct core *core);
-void cycle(struct warrior_list *wlist, struct core *core);
+struct mars {
+    struct core *core;
+    struct warrior_list *wlist;
+};
+
+void mars_init(struct mars *mars, size_t warriors, size_t core_size);
+void mars_del(struct mars *mars);
+void mars_free(struct mars *mars);
+
+void cycle(struct mars *mars);
 addr_t eval_operand(struct operand op, addr_t pc, struct core *core);
 
 #endif

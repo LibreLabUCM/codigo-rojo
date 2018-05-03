@@ -17,11 +17,11 @@ void print_core(struct core *core) {
 }
 
 int main() {
-    struct core *core = malloc(sizeof(*core));
-    core_init(core, CORESIZE);
+    struct mars mars;
+    mars_init(&mars, CORESIZE, WARRIORS);
 
-    for (int i = 0; i < core->m; i++) {
-        core->core[i] = (struct instruction) {
+    for (int i = 0; i < mars.core->m; i++) {
+        mars.core->core[i] = (struct instruction) {
             .opcode = DAT,
             .modifier = F,
             .a = { .mode = IMMEDIATE, .number = 0 },
@@ -29,26 +29,23 @@ int main() {
         };
     }
 
-    struct warrior_list *wlist = malloc(sizeof(*wlist));
-    warrior_list_init(wlist, WARRIORS);
-    for(int i = 0; i < wlist->nwrs; i++) {
-        core->core[CORESIZE/WARRIORS*i] = (struct instruction) {
+    for(int i = 0; i < mars.wlist->nwrs; i++) {
+        mars.core->core[CORESIZE/WARRIORS*i] = (struct instruction) {
             .opcode = MOV,
             .modifier = I,
             .a = { .mode = DIRECT, .number = 0 },
             .b = { .mode = DIRECT, .number = 1 }
         };
-        queue_push_back(&wlist->l[i], CORESIZE/WARRIORS*i);
+        queue_push_back(&mars.wlist->l[i], CORESIZE/WARRIORS*i);
     }
 
-    print_core(core);
+    print_core(mars.core);
     printf("\n");
     for (int i = 0; i < CYCLES*WARRIORS; i++) {
-        cycle(wlist, core);
-        print_core(core);
+        cycle(&mars);
+        print_core(mars.core);
         printf("\n");
     }
 
-    warrior_list_del(wlist);
-    core_del(core);
+    mars_del(&mars);
 }

@@ -25,7 +25,7 @@ void mars_free(struct mars *mars) {
     free(mars);
 }
 
-void cycle_warrior(struct queue *queue, struct core *core) {
+static void cycle_warrior(struct queue *queue, struct core *core) {
     addr_t pc = queue_pop_front(queue);
     struct instruction ir = *core_get(core, pc);
     switch (ir.opcode) {
@@ -42,8 +42,8 @@ void cycle_warrior(struct queue *queue, struct core *core) {
     }
 }
 
-void cycle(struct warrior_list *wlist, struct core *core) {
-    cycle_warrior(next_warrior(wlist), core);
+void cycle(struct mars *mars) {
+    cycle_warrior(next_warrior(mars->wlist), mars->core);
 }
 
 addr_t eval_operand(struct operand op, addr_t pc, struct core *core) {
