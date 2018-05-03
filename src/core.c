@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "core.h"
 #include "instruction.h"
@@ -24,4 +25,12 @@ struct instruction *core_get(struct core *c, addr_t addr) {
 
 void core_put(struct core *c, addr_t addr, struct instruction ir) {
     c->core[addr % c->m] = ir;
+}
+
+void core_print(struct core *core) {
+    for (int j = 0; j < core->m; j++) {
+        struct instruction ir = *core_get(core, j);
+        printf("%d %d %d %d %d %d\n",
+               ir.opcode, ir.modifier, ir.a.mode, ir.a.number, ir.b.mode, ir.b.number);
+    }
 }

@@ -8,14 +8,6 @@
 #define WARRIORS 2
 #define CORESIZE 7*WARRIORS // 14
 
-void print_core(struct core *core) {
-    for (int j = 0; j < core->m; j++) {
-        struct instruction ir = *core_get(core, j);
-        printf("%d %d %d %d %d %d\n",
-               ir.opcode, ir.modifier, ir.a.mode, ir.a.number, ir.b.mode, ir.b.number);
-    }
-}
-
 int main() {
     struct mars mars;
     mars_init(&mars, CORESIZE, WARRIORS);
@@ -39,11 +31,11 @@ int main() {
         queue_push_back(&mars.wlist->l[i], CORESIZE/WARRIORS*i);
     }
 
-    print_core(mars.core);
+    core_print(mars.core);
     printf("\n");
     for (int i = 0; i < CYCLES*WARRIORS; i++) {
         cycle(&mars);
-        print_core(mars.core);
+        core_print(mars.core);
         printf("\n");
     }
 
