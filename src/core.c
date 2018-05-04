@@ -80,7 +80,5 @@ void core_print(struct core *core) {
         printf(" ");
         print_mode(ir.b.mode);
         printf("%d\n", ir.b.number);
-        //printf("%d %d %d %d %d %d\n",
-        //ir.opcode, ir.modifier, ir.a.mode, ir.a.number, ir.b.mode, ir.b.number);
     }
 }
