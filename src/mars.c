@@ -66,3 +66,19 @@ addr_t eval_operand(struct operand op, addr_t pc, struct core *core) {
     }
     return res;
 }
+
+int game_winner(struct mars *mars) {
+    int counter = 0;
+    int winner = -1;
+    for (int i = 0; i < mars->wlist->nwrs; i++) {
+        if (mars->wlist->l[i].len != 0) {
+            counter++;
+            winner = i;
+        }
+    }
+    if (counter == 1) {
+        return winner;
+    } else {
+        return -1;
+    }
+}

@@ -59,11 +59,13 @@ int main() {
 
     core_print(mars.core);
     printf("\n");
-    for (int i = 0; i < CYCLES*WARRIORS; i++) {
+    while (game_winner(&mars) == -1) {
         cycle(&mars);
         core_print(mars.core);
         printf("\n");
     }
+
+    printf("The winner is %d\n", game_winner(&mars));
 
     mars_del(&mars);
 }

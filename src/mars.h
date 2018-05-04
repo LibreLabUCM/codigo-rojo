@@ -16,6 +16,7 @@ void mars_del(struct mars *mars);
 void mars_free(struct mars *mars);
 
 void cycle(struct mars *mars);
+int game_winner(struct mars *mars);
 addr_t eval_operand(struct operand op, addr_t pc, struct core *core);
 
 #endif
