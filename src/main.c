@@ -3,6 +3,7 @@
 #include "queue.h"
 #include "core.h"
 #include "mars.h"
+#include "parse.h"
 
 #define CYCLES 3
 #define WARRIORS 2
@@ -13,48 +14,24 @@ int main() {
     mars_init(&mars, CORESIZE, WARRIORS);
 
     for (int i = 0; i < mars.core->m; i++) {
-        mars.core->core[i] = (struct instruction) {
-            .opcode = DAT,
-            .modifier = F,
-            .a = { .mode = IMMEDIATE, .number = 1 },
-            .b = { .mode = IMMEDIATE, .number = 1 }
-        };
+        parse_instruction("DAT.F #1, #1\n", mars.core->core + i);
     }
 
     // WARRIOR 1
-    mars.core->core[0] = (struct instruction) {
-        .opcode = ADD,
-        .modifier = AB,
-        .a = { .mode = IMMEDIATE, .number = 4 },
-        .b = { .mode = DIRECT, .number = 3 }
-    };
-    mars.core->core[1] = (struct instruction) {
-        .opcode = MOV,
-        .modifier = I,
-        .a = { .mode = DIRECT, .number = 2 },
-        .b = { .mode = INDIRECT, .number = 2 }
-    };
-    mars.core->core[2] = (struct instruction) {
-        .opcode = JMP,
-        .modifier = B,
-        .a = { .mode = DIRECT, .number = CORESIZE - 2 },
-        .b = { .mode = DIRECT, .number = 1 }
-    };
-    mars.core->core[3] = (struct instruction) {
-        .opcode = DAT,
-        .modifier = F,
-        .a = { .mode = IMMEDIATE, .number = 0 },
-        .b = { .mode = IMMEDIATE, .number = 0 }
-    };
+    parse_instruction("ADD.AB #4, $3\n", mars.core->core);
+
+    parse_instruction("MOV.I $2, @2\n", mars.core->core + 1);
+
+    char tmp[20];
+    sprintf(tmp, "JMP.B $%d, $0\n", CORESIZE - 2);
+    parse_instruction(tmp, mars.core->core + 2);
+
+    parse_instruction("DAT.F #0, #0\n", mars.core->core + 3);
+
     queue_push_back(&mars.wlist->l[0], 0);
 
     // WARRIOR 2
-    mars.core->core[7] = (struct instruction) {
-        .opcode = MOV,
-        .modifier = I,
-        .a = { .mode = DIRECT, .number = 0 },
-        .b = { .mode = DIRECT, .number = 1 }
-    };
+    parse_instruction("MOV.I $0, $1\n", mars.core->core + 7);
     queue_push_back(&mars.wlist->l[1], 7);
 
     core_print(mars.core);
