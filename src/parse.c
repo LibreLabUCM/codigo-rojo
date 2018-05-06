@@ -12,7 +12,7 @@ void parse_core(char *str, struct core *core) {
 */
 
 char *parse_opcode(char *str, enum opcode *opcode) {
-    char opcode_str[4];
+    char opcode_str[4] = { 0 };
     strncpy(opcode_str, str, 3);
     if (strcmp(opcode_str, "DAT") == 0)
         *opcode = DAT;
