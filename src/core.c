@@ -77,7 +77,7 @@ void core_print(struct core *core) {
         printf(" ");
         print_mode(ir.a.mode);
         printf("%d", ir.a.number);
-        printf(" ");
+        printf(", ");
         print_mode(ir.b.mode);
         printf("%d\n", ir.b.number);
     }
