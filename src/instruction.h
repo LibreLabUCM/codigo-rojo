@@ -1,7 +1,7 @@
 #ifndef INSTRUCTION_H
 #define INSTRUCTION_H
 
-typedef unsigned int addr_t;
+typedef int addr_t;
 
 enum opcode {
     DAT,

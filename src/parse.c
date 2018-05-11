@@ -124,7 +124,12 @@ int digit_to_int(char c) {
 }
 
 char *parse_number(char *str, unsigned int *number) {
-    if (!is_digit(*str))
+    bool negative = false;
+    if (*str == '-') {
+        negative = true;
+        str++;
+    }
+    else if (!is_digit(*str))
         return NULL;
     int i = 0;
     while (is_digit(str[i])) {
@@ -138,6 +143,8 @@ char *parse_number(char *str, unsigned int *number) {
         *number += digit_to_int(str[j]) * k;
         k *= 10;
     }
+    if (negative)
+        *number *= -1;
     return str + i;
 }
 
