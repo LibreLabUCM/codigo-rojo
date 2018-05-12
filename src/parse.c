@@ -123,7 +123,7 @@ int digit_to_int(char c) {
     return -1;
 }
 
-char *parse_number(char *str, unsigned int *number) {
+char *parse_number(char *str, int *number) {
     bool negative = false;
     if (*str == '-') {
         negative = true;
