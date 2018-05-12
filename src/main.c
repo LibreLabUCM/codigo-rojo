@@ -4,6 +4,7 @@
 #include "core.h"
 #include "mars.h"
 #include "parse.h"
+#include "program.h"
 
 #define CYCLES 3
 #define WARRIORS 2
@@ -18,20 +19,17 @@ int main() {
     }
 
     // WARRIOR 1
-    parse_instruction("ADD.AB #4, $3\n", mars.core->core);
-
-    parse_instruction("MOV.I $2, @2\n", mars.core->core + 1);
-
-    char tmp[20];
-    sprintf(tmp, "JMP.B $%d, $0\n", CORESIZE - 2);
-    parse_instruction(tmp, mars.core->core + 2);
-
-    parse_instruction("DAT.F #0, #0\n", mars.core->core + 3);
-
+    struct program prg1;
+    program_init(&prg1);
+    program_read(&prg1, "dwarf.red");
+    core_load(mars.core, 0, &prg1);
     queue_push_back(&mars.wlist->l[0], 0);
 
     // WARRIOR 2
-    parse_instruction("MOV.I $0, $1\n", mars.core->core + 7);
+    struct program prg2;
+    program_init(&prg2);
+    program_read(&prg2, "imp.red");
+    core_load(mars.core, 7, &prg2);
     queue_push_back(&mars.wlist->l[1], 7);
 
     core_print(mars.core);

@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 #include "instruction.h"
+#include "program.h"
 
 struct core {
     struct instruction *core;
@@ -15,6 +16,7 @@ void core_del(struct core *c);
 void core_free(struct core *c);
 struct instruction *core_get(struct core *c, addr_t addr);
 void core_put(struct core *c, addr_t addr, struct instruction ir);
+void core_load(struct core *c, addr_t at, struct program *prg);
 void core_print(struct core *core);
 
 #endif
