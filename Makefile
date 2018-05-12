@@ -1,11 +1,12 @@
 OBJECTS = $(patsubst src/%.c, src/%.o, $(wildcard src/*.c))
 HEADERS = $(wildcard src/*.h)
+GCC = gcc -Wall
 
 src/%.o: src/%.c $(HEADERS)
-	gcc -c $< -o $@
+	$(GCC) -c $< -o $@
 
 main: $(OBJECTS)
-	gcc $(OBJECTS) -Wall -o src/main
+	$(GCC) $(OBJECTS) -o src/main
 
 run: main
 	./src/main
