@@ -134,7 +134,7 @@ char *parse_number(char *str, int *number) {
     int i = 0;
     while (is_digit(str[i])) {
         if (str[i] == '\0')
-            return false;
+            return NULL;
         i++;
     }
     *number = 0;
