@@ -11,6 +11,11 @@ main: $(OBJECTS)
 run: main
 	./src/main
 
+lib: $(OBJECTS)
+	rm target/libcodp.a
+	ar -cvq target/libcodp.a $(OBJECTS)
+
 clean:
 	rm src/*.o
 	rm src/main
+	rm target/libcodp.a
