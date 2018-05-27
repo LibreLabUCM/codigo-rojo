@@ -5,11 +5,11 @@
 #include "instruction.h"
 #include "queue.h"
 
-void ir_cmp(struct instruction ir, addr_t pc, struct core *core, struct queue *queue) {
-    addr_t aptr = eval_operand(ir.a, pc, core);
-    struct instruction air = *core_get(core, pc + aptr);
-    addr_t bptr = eval_operand(ir.b, pc, core);
-    struct instruction bir = *core_get(core, pc + bptr);
+void codp_ir_cmp(struct instruction ir, addr_t pc, struct core *core, struct queue *queue) {
+    addr_t aptr = codp_mars_eval_operand(ir.a, pc, core);
+    struct instruction air = *codp_core_get(core, pc + aptr);
+    addr_t bptr = codp_mars_eval_operand(ir.b, pc, core);
+    struct instruction bir = *codp_core_get(core, pc + bptr);
     bool jump;
     switch (ir.modifier) {
     case A: jump = air.a.number == bir.a.number; break;
@@ -29,7 +29,7 @@ void ir_cmp(struct instruction ir, addr_t pc, struct core *core, struct queue *q
         break;
     }
     if (jump)
-        queue_push_back(queue, (pc + 2) % core->m);
+        codp_queue_push_back(queue, (pc + 2) % core->m);
     else
-        queue_push_back(queue, (pc + 1) % core->m);
+        codp_queue_push_back(queue, (pc + 1) % core->m);
 }

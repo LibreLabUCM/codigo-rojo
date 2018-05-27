@@ -6,10 +6,10 @@
 #include "queue.h"
 
 #define ARITH_DIV(op)                                                   \
-    addr_t aptr = eval_operand(ir.a, pc, core);                         \
-    struct instruction *air = core_get(core, pc + aptr);                \
-    addr_t bptr = eval_operand(ir.b, pc, core);                         \
-    struct instruction *bir = core_get(core, pc + bptr);                \
+    addr_t aptr = codp_mars_eval_operand(ir.a, pc, core);               \
+    struct instruction *air = codp_core_get(core, pc + aptr);           \
+    addr_t bptr = codp_mars_eval_operand(ir.b, pc, core);               \
+    struct instruction *bir = codp_core_get(core, pc + bptr);           \
     bool noqueue = false;                                               \
     switch (ir.modifier) {                                              \
     case A:                                                             \
@@ -43,12 +43,12 @@
         break;                                                          \
     }                                                                   \
     if (!noqueue)                                                       \
-        queue_push_back(queue, (pc + 1) % core->m);
+        codp_queue_push_back(queue, (pc + 1) % core->m);
 
-void ir_div(struct instruction ir, addr_t pc, struct core *core, struct queue *queue) {
+void codp_ir_div(struct instruction ir, addr_t pc, struct core *core, struct queue *queue) {
     ARITH_DIV(/)
 }
 
-void ir_mod(struct instruction ir, addr_t pc, struct core *core, struct queue *queue) {
+void codp_ir_mod(struct instruction ir, addr_t pc, struct core *core, struct queue *queue) {
     ARITH_DIV(%)
 }

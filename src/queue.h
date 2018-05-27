@@ -16,10 +16,10 @@ struct queue_node {
     struct queue_node *prev;
 };
 
-void queue_init(struct queue *q);
-void queue_del(struct queue *q);
-void queue_free(struct queue *q);
-void queue_push_back(struct queue *q, int addr);
-addr_t queue_pop_front(struct queue *q);
+void codp_queue_init(struct queue *q);
+void codp_queue_del(struct queue *q);
+void codp_queue_free(struct queue *q);
+void codp_queue_push_back(struct queue *q, int addr);
+addr_t codp_queue_pop_front(struct queue *q);
 
 #endif

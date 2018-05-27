@@ -148,7 +148,7 @@ char *parse_number(char *str, int *number) {
     return str + i;
 }
 
-char *parse_instruction(char *str, struct instruction *ir) {
+char *codp_parse_instruction(char *str, struct instruction *ir) {
     str = skip_spaces(str);
     str = parse_opcode(str, &ir->opcode);
     if (str == NULL)

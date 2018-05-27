@@ -5,7 +5,7 @@
 #include "core.h"
 #include "queue.h"
 
-void ir_div(struct instruction ir, addr_t pc, struct core *core, struct queue *queue);
-void ir_mod(struct instruction ir, addr_t pc, struct core *core, struct queue *queue);
+void copd_ir_div(struct instruction ir, addr_t pc, struct core *core, struct queue *queue);
+void copd_ir_mod(struct instruction ir, addr_t pc, struct core *core, struct queue *queue);
 
 #endif

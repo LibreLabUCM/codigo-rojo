@@ -2,7 +2,7 @@
 
 #include "instruction.h"
 
-void print_opcode(enum opcode code) {
+void codp_print_opcode(enum opcode code) {
     switch (code) {
     case DAT: printf("DAT"); break;
     case MOV: printf("MOV"); break;
@@ -21,7 +21,7 @@ void print_opcode(enum opcode code) {
     }
 }
 
-void print_modifier(enum modifier m) {
+void codp_print_modifier(enum modifier m) {
     switch (m) {
     case A: printf("A"); break;
     case B: printf("B"); break;
@@ -33,7 +33,7 @@ void print_modifier(enum modifier m) {
     }
 }
 
-void print_mode(enum mode m) {
+void codp_print_mode(enum mode m) {
     switch (m) {
     case IMMEDIATE: printf("#"); break;
     case DIRECT: printf("$"); break;
@@ -43,14 +43,14 @@ void print_mode(enum mode m) {
     }
 }
 
-void print_instruction(struct instruction *ir) {
-    print_opcode(ir->opcode);
+void codp_print_instruction(struct instruction *ir) {
+    codp_print_opcode(ir->opcode);
     printf(".");
-    print_modifier(ir->modifier);
+    codp_print_modifier(ir->modifier);
     printf(" ");
-    print_mode(ir->a.mode);
+    codp_print_mode(ir->a.mode);
     printf("%d", ir->a.number);
     printf(", ");
-    print_mode(ir->b.mode);
+    codp_print_mode(ir->b.mode);
     printf("%d", ir->b.number);
 }

@@ -4,6 +4,6 @@
 #include "mars.h"
 #include "core.h"
 
-void ir_cmp(struct instruction ir, addr_t pc, struct core *core, struct queue *queue);
+void codp_ir_cmp(struct instruction ir, addr_t pc, struct core *core, struct queue *queue);
 
 #endif

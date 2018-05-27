@@ -50,7 +50,7 @@ bool program_read(struct program *prg, const char *filename) {
             if (line == NULL)
                 return true;
             struct instruction ir;
-            if (parse_instruction(line, &ir) == NULL)
+            if (codp_parse_instruction(line, &ir) == NULL)
                 return false;
             program_push(prg, &ir);
         }

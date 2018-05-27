@@ -11,12 +11,12 @@ struct mars {
     struct warrior_list *wlist;
 };
 
-void mars_init(struct mars *mars, size_t warriors, size_t core_size);
-void mars_del(struct mars *mars);
-void mars_free(struct mars *mars);
+void codp_mars_init(struct mars *mars, size_t warriors, size_t core_size);
+void codp_mars_del(struct mars *mars);
+void codp_mars_free(struct mars *mars);
 
-void cycle(struct mars *mars);
-int game_winner(struct mars *mars);
-addr_t eval_operand(struct operand op, addr_t pc, struct core *core);
+void codp_mars_cycle(struct mars *mars);
+int codp_mars_game_winner(struct mars *mars);
+addr_t codp_mars_eval_operand(struct operand op, addr_t pc, struct core *core);
 
 #endif

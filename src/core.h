@@ -11,12 +11,12 @@ struct core {
     size_t m;
 };
 
-void core_init(struct core *c, size_t m);
-void core_del(struct core *c);
-void core_free(struct core *c);
-struct instruction *core_get(struct core *c, addr_t addr);
-void core_put(struct core *c, addr_t addr, struct instruction ir);
-void core_load(struct core *c, addr_t at, struct program *prg);
-void core_print(struct core *core);
+void codp_core_init(struct core *c, size_t m);
+void codp_core_del(struct core *c);
+void codp_core_free(struct core *c);
+struct instruction *codp_core_get(struct core *c, addr_t addr);
+void codp_core_put(struct core *c, addr_t addr, struct instruction ir);
+void codp_core_load(struct core *c, addr_t at, struct program *prg);
+void codp_core_print(struct core *core);
 
 #endif

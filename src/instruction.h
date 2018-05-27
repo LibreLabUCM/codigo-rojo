@@ -50,9 +50,9 @@ struct instruction {
     struct operand b;
 };
 
-void print_opcode(enum opcode code);
-void print_modifier(enum modifier m);
-void print_mode(enum mode m);
-void print_instruction(struct instruction *ir);
+void codp_print_opcode(enum opcode code);
+void codp_print_modifier(enum modifier m);
+void codp_print_mode(enum mode m);
+void codp_print_instruction(struct instruction *ir);
 
 #endif

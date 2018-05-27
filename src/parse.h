@@ -1,6 +1,6 @@
 #ifndef PARSE_H
 #define PARSE_H
 
-char *parse_instruction(char *str, struct instruction *ir);
+char *codp_parse_instruction(char *str, struct instruction *ir);
 
 #endif
