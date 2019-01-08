@@ -10,7 +10,7 @@
 #define WARRIORS 2
 #define CORESIZE 35
 
-void main() {
+int main() {
     struct mars mars;
     codp_mars_init(&mars, CORESIZE, WARRIORS);
 
@@ -43,4 +43,5 @@ void main() {
     printf("The winner is %d\n", codp_mars_game_winner(&mars));
 
     codp_mars_del(&mars);
+    return 0;
 }
