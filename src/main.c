@@ -10,7 +10,7 @@
 #define WARRIORS 2
 #define CORESIZE 35
 
-int main() {
+void main() {
     struct mars mars;
     codp_mars_init(&mars, CORESIZE, WARRIORS);
 
