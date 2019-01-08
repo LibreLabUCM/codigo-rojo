@@ -43,4 +43,5 @@ int main() {
     printf("The winner is %d\n", codp_mars_game_winner(&mars));
 
     codp_mars_del(&mars);
+    return 0;
 }
